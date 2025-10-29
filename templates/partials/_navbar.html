@@ -1,0 +1,51 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm mb-4">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="{% url 'index' %}">🎬 Fórum ERP Comunidade</a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="menu">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item"><a class="nav-link" href="{% url 'sobre' %}">Sobre</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'contato' %}">Contato</a></li>
+      </ul>
+
+      <!-- 🔍 Campo de busca -->
+      <form class="d-flex me-3" method="get" action="{% url 'pesquisar_videos' %}">
+        <input class="form-control me-2" type="search" name="q" placeholder="Pesquisar vídeos..." aria-label="Pesquisar">
+        <button class="btn btn-outline-light" type="submit">Buscar</button>
+      </form>
+
+      <ul class="navbar-nav align-items-center">
+        {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'minha_conta' %}">Minha Conta</a>
+          </li>
+
+          {% if user.is_staff %}
+            <!-- ⚙️ Link administrativo no mesmo estilo -->
+            <li class="nav-item">
+              <a class="nav-link" href="/painel/" target="_blank">⚙️ Painel Administrativo</a>
+            </li>
+          {% endif %}
+
+          <li class="nav-item">
+            <form method="POST" action="{% url 'logout' %}" class="d-inline m-0 p-0">
+              {% csrf_token %}
+              <button type="submit" class="nav-link btn btn-link text-decoration-none text-light p-0 m-0" style="line-height: 1.5;">
+                Sair
+              </button>
+            </form>
+          </li>
+
+        {% else %}
+          <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Entrar</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Registrar</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>

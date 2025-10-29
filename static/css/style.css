@@ -1,0 +1,51 @@
+body {
+  background-color: #f8f9fa;
+  font-family: "Segoe UI", Roboto, sans-serif;
+}
+
+.card {
+  border-radius: 10px;
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+
+footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+/* ===== Estilo extra para página Minha Conta ===== */
+
+.profile-icon {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background-color: #e9ecef;
+  padding: 10px;
+  border: 2px solid #dee2e6;
+  object-fit: cover;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.btn {
+  border-radius: 8px !important;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-outline-primary:hover {
+  background-color: #0d6efd;
+  color: #fff !important;
+}
+
+.btn-outline-danger:hover {
+  background-color: #dc3545;
+  color: #fff !important;
+}
+
+.btn-secondary:hover {
+  background-color: #6c757d;
+  color: #fff !important;
+}

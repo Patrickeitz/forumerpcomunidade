@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Excluir Conta{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="card border-danger shadow-sm">
+    <div class="card-body text-center">
+      <h3 class="text-danger mb-3">⚠️ Confirmar exclusão de conta</h3>
+      <p class="mb-4">
+        Tem certeza de que deseja excluir sua conta <strong>{{ user.username }}</strong>?<br>
+        <em>Esta ação é permanente e não pode ser desfeita.</em>
+      </p>
+
+      <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger px-4 me-2">Sim, excluir</button>
+        <a href="{% url 'minha_conta' %}" class="btn btn-secondary px-4">Cancelar</a>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

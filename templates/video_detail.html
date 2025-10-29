@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ video.titulo }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <div class="card shadow-sm mb-4">
+        {% if video.arquivo %}
+          <video controls class="w-100 rounded-top">
+            <source src="{{ video.arquivo.url }}" type="video/mp4">
+            Seu navegador não suporta o elemento de vídeo.
+          </video>
+        {% else %}
+          <img src="{% static 'img/thumb.png' %}" class="w-100 rounded-top" alt="Miniatura padrão">
+        {% endif %}
+        <div class="card-body">
+          <h3 class="card-title">{{ video.titulo }}</h3>
+          <p class="card-text">{{ video.descricao }}</p>
+          <p class="text-muted small mb-1">
+            Publicado em {{ video.publicado_em|date:"d/m/Y H:i" }}
+          </p>
+          {% if video.disponivel %}
+            <span class="badge text-bg-success">Disponível</span>
+          {% else %}
+            <span class="badge text-bg-secondary">Indisponível</span>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="card shadow-sm mb-4">
+        <div class="card-header bg-primary text-white">
+          💬 Comentários ({{ comentarios.count }})
+        </div>
+        <div class="card-body">
+          {% if comentarios %}
+            {% for comentario in comentarios %}
+              <div class="mb-3 border-bottom pb-2">
+                <strong>{{ comentario.usuario.username }}</strong>
+                <small class="text-muted">
+                  • {{ comentario.criado_em|date:"d/m/Y H:i" }}
+                </small>
+                <p class="mt-1 mb-0">{{ comentario.texto }}</p>
+              </div>
+            {% endfor %}
+          {% else %}
+            <p class="text-muted">Nenhum comentário ainda.</p>
+          {% endif %}
+        </div>
+      </div>
+
+      {% if user.is_authenticated %}
+      <div class="card shadow-sm mb-5">
+        <div class="card-header bg-light">
+          ✍️ Adicionar comentário
+        </div>
+        <div class="card-body">
+          <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Enviar</button>
+          </form>
+        </div>
+      </div>
+      {% else %}
+      <div class="alert alert-info text-center">
+        <a href="{% url 'login' %}" class="alert-link">Faça login</a> para comentar.
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

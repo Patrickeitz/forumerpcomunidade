@@ -1,69 +1,108 @@
-# ☕ Fórum ERP Comunidade
+<h1 align="center">☕ Fórum ERP Comunidade</h1>
 
-Um sistema de fórum desenvolvido em **Django**, com foco em **colaboração e troca de conhecimento entre usuários de ERP**.  
-O projeto foi criado como parte de um estudo sobre **desenvolvimento web com Python/Django**.
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.10+-blue.svg?logo=python&logoColor=white" />
+  <img src="https://img.shields.io/badge/Django-5.2-green.svg?logo=django&logoColor=white" />
+  <img src="https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellow.svg" />
+  <img src="https://img.shields.io/badge/License-MIT-lightgrey.svg" />
+</p>
+
+<p align="center">
+  <b>Plataforma de discussão e colaboração entre usuários de sistemas ERP.</b><br>
+  Projeto acadêmico desenvolvido com <b>Django</b>, <b>Bootstrap</b> e <b>FFmpeg</b>.
+</p>
 
 ---
 
-## 🚀 Tecnologias
+## 🚀 Como Rodar o Projeto Localmente (Windows)
 
-- **Django 4.2+**
-- **SQLite3**
-- **Bootstrap 5**
-- **FFmpeg / MoviePy** (para manipulação de mídia)
-- **PythonAnywhere** (deploy)
+### 🔧 Pré-requisitos
+Antes de começar, instale:
+
+- [Python 3.10+](https://www.python.org/downloads/)
+- [Git](https://git-scm.com/)
+- [FFmpeg](https://ffmpeg.org/download.html) — (necessário para recursos de vídeo e áudio)
 
 ---
 
-## ⚙️ Instalação local
+### 🧩 Passo a Passo
 
+#### 1️⃣ Clone o repositório
 ```bash
-# Clone o repositório
 git clone https://github.com/Patrickeitz/forumerpcomunidade.git
 cd forumerpcomunidade
 
-# Crie o ambiente virtual
+2️⃣ Crie e ative o ambiente virtual
 python -m venv venv
-venv\Scripts\activate  # (Windows)
-source venv/bin/activate  # (Linux/Mac)
+Windows:
+venv\Scripts\activate
 
-# Instale as dependências
+Linux:
+source venv/bin/activate
+
+3️⃣ Instale as dependências
 pip install -r requirements.txt
 
-# Execute as migrações
+4️⃣ Execute as migrações
 python manage.py migrate
 
-# Inicie o servidor
+5️⃣ Inicie o servidor
 python manage.py runserver
-Acesse em: http://localhost:8000
 
-🌐 Deploy no PythonAnywhere
-Clone o projeto na sua conta PythonAnywhere
+📍 Acesse o projeto no navegador:
+👉 http://127.0.0.1:8000/
 
-Configure o WSGI com o arquivo wsgi_pythonanywhere.py
+🧠 Tecnologias Utilizadas
+Categoria	Tecnologia
+Backend	Django 5.2
+Banco de dados	SQLite3
+Frontend	HTML, CSS, Bootstrap 5
+Uploads e mídia	Pillow, FFmpeg
+Outras libs	django-filter, django-widget-tweaks, python-decouple
 
-Execute:
+⚙️ Arquivo .env
+Crie um arquivo .env na raiz do projeto com o seguinte conteúdo:
 
-bash
-Copiar código
+DEBUG=True
+SECRET_KEY=sua_chave_secreta_aqui
+ALLOWED_HOSTS=127.0.0.1,localhost
+📁 Estrutura do Projeto
+
+projetoforum/
+├── core/                # Configurações principais do Django
+├── forum/               # Aplicativo principal (tópicos, postagens, etc.)
+├── templates/           # Páginas HTML
+├── static/              # CSS, JS e Bootstrap
+├── media/               # Uploads de usuários
+├── db.sqlite3           # Banco de dados local
+├── manage.py            # Comando principal do Django
+└── requirements.txt     # Dependências do projeto
+
+✨ Recursos do Sistema
+✅ Cadastro e autenticação de usuários
+✅ Criação de tópicos e respostas
+✅ Upload de imagens e vídeos (via FFmpeg)
+✅ Painel administrativo completo
+✅ Interface moderna e responsiva com Bootstrap
+
+💡 Dicas Úteis
+Criar um superusuário:
+
+python manage.py createsuperuser
+
+Acessar o painel admin:
+http://127.0.0.1:8000/admin
+
+Caso precise recriar migrações:
+
+del /s /q forum\migrations\*.py
+python manage.py makemigrations
 python manage.py migrate
-python manage.py collectstatic
-Clique em Reload no painel “Web”
 
-📷 Funcionalidades Principais
-Cadastro e autenticação de usuários
-
-Criação de tópicos e respostas
-
-Sistema de mídia com suporte a vídeos (via FFmpeg)
-
-Painel administrativo do Django
-
-Layout responsivo com Bootstrap
-
-💡 Autor
+🧑‍💻 Autor
 Patrick Eitz
 📘 Projeto: Fórum ERP Comunidade
-🔗 https://github.com/Patrickeitz/forumerpcomunidade
+🌐 GitHub: @Patrickeitz
+💬 “Compartilhar conhecimento é evoluir junto.”
 
-✨ Desenvolvido com Django, café e dedicação!
+<p align="center"> Feito com ❤️ e ☕ usando <b>Django</b>. </p> ```

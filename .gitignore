@@ -12,3 +12,12 @@ __pycache__/
 venv/
 env/
 .venv/
+
+# Ignorar arquivos sensíveis
+db.sqlite3
+.env
+__pycache__/
+venv/
+*.pyc
+*.log
+

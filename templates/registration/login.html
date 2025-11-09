@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load widget_tweaks %}
 {% block title %}Entrar{% endblock %}
 
 {% block content %}
@@ -22,11 +23,11 @@
         {{ form.non_field_errors }}
         <div class="mb-3">
           <label for="id_username" class="form-label">Usuário</label>
-          {{ form.username }}
+          {% render_field form.username class="form-control" %}
         </div>
         <div class="mb-3">
           <label for="id_password" class="form-label">Senha</label>
-          {{ form.password }}
+          {% render_field form.password class="form-control" %}
         </div>
         <button type="submit" class="btn btn-primary w-100">Entrar</button>
       </form>

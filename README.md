@@ -67,14 +67,3 @@ Patrick Eitz
 🔗 https://github.com/Patrickeitz/forumerpcomunidade
 
 ✨ Desenvolvido com Django, café e dedicação!
-
----
-
-## 🔄 3️⃣ — Atualizar tudo no GitHub
-
-Depois de salvar os 3 arquivos (`requirements.txt`, `wsgi_pythonanywhere.py`, `README.md`), execute no terminal do VS Code:
-
-```bash
-git add .
-git commit -m "Adicionados requirements.txt, WSGI e README.md aprimorado"
-git push

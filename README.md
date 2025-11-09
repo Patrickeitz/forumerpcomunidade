@@ -105,4 +105,4 @@ Patrick Eitz
 🌐 GitHub: @Patrickeitz
 💬 “Compartilhar conhecimento é evoluir junto.”
 
-<p align="center"> Feito com ❤️ e ☕ usando <b>Django</b>. </p> ```
+Feito com ❤️ e ☕ usando <b>Django</b>. ```

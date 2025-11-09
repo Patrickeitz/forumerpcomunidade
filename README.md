@@ -68,9 +68,6 @@ Patrick Eitz
 
 ✨ Desenvolvido com Django, café e dedicação!
 
-yaml
-Copiar código
-
 ---
 
 ## 🔄 3️⃣ — Atualizar tudo no GitHub

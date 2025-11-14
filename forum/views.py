@@ -116,25 +116,7 @@ def register(request):
                 else:
                     messages.error(request, "Usuário já existe!")
                     return redirect('register')
-
-            # Verifica se o e-mail já existe
-            user_by_email = User.objects.filter(email=email).first()
-            if user_by_email:
-                if not user_by_email.is_active:
-                    # Reativa usuário inativo
-                    user_by_email.set_password(password)
-                    user_by_email.username = username
-                    user_by_email.is_active = False
-                    user_by_email.save()  # post_save signal enviará e-mail
-                    messages.success(
-                        request,
-                        "Conta reativada e aguardando aprovação do administrador!"
-                    )
-                    return redirect('login')
-                else:
-                    messages.error(request, "E-mail já cadastrado!")
-                    return redirect('register')
-
+            
             # Cria novo usuário inativo
             user = User.objects.create_user(
                 username=username,

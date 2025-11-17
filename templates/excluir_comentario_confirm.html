@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Excluir Comentário{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+
+            <div class="card shadow-sm">
+                <div class="card-header bg-danger text-white">
+                    🗑️ Confirmar exclusão
+                </div>
+
+                <div class="card-body">
+                    <p>Tem certeza de que deseja excluir este comentário?</p>
+
+                    <div class="border rounded p-3 bg-light mb-3">
+                        <strong>{{ comentario.usuario.username }}</strong>
+                        <small class="text-muted">
+                            • {{ comentario.criado_em|date:"d/m/Y H:i" }}
+                        </small>
+                        <p class="mt-2">{{ comentario.texto }}</p>
+                    </div>
+
+                    <form method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Excluir</button>
+                        <a href="{% url 'video_detail' comentario.video.id %}" class="btn btn-secondary">Cancelar</a>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

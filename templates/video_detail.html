@@ -43,6 +43,12 @@
                   • {{ comentario.criado_em|date:"d/m/Y H:i" }}
                 </small>
                 <p class="mt-1 mb-0">{{ comentario.texto }}</p>
+                {% if comentario.usuario == user %}
+                  <div class="mt-1">
+                    <a href="{% url 'editar_comentario' comentario.id %}" class="btn btn-sm btn-outline-primary me-2">✏️ Editar</a>
+                    <a href="{% url 'excluir_comentario' comentario.id %}" class="btn btn-sm btn-outline-danger">🗑️ Excluir</a>
+                  </div>
+                {% endif %} 
               </div>
             {% endfor %}
           {% else %}

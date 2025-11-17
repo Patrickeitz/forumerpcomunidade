@@ -7,7 +7,7 @@ from django.core.mail import send_mail, BadHeaderError
 from django.conf import settings
 from django.db.models import Q
 
-from .models import Video
+from .models import Video, Comentario
 from .forms import ComentarioForm, CustomUserCreationForm
 from django.contrib.auth.models import User
 
@@ -216,4 +216,43 @@ def pesquisar_videos(request):
     return render(request, 'pesquisa_resultados.html', {
         'videos': videos,
         'query': query
+    })
+
+@login_required
+def editar_comentario(request, comentario_id):
+    comentario = get_object_or_404(Comentario, id=comentario_id)
+
+    if comentario.usuario != request.user:
+        messages.error(request, "Você não tem permissão para editar este comentário.")
+        return redirect('video_detail', video_id=comentario.video.id)
+
+    if request.method == 'POST':
+        form = ComentarioForm(request.POST, instance=comentario)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Comentário atualizado!")
+            return redirect('video_detail', video_id=comentario.video.id)
+    else:
+        form = ComentarioForm(instance=comentario)
+
+    return render(request, 'editar_comentario.html', {
+        'form': form,
+        'comentario': comentario
+    })
+
+@login_required
+def excluir_comentario(request, comentario_id):
+    comentario = get_object_or_404(Comentario, id=comentario_id)
+
+    if comentario.usuario != request.user:
+        messages.error(request, "Você não tem permissão para excluir este comentário.")
+        return redirect('video_detail', video_id=comentario.video.id)
+
+    if request.method == 'POST':
+        comentario.delete()
+        messages.success(request, "Comentário excluído!")
+        return redirect('video_detail', video_id=comentario.video.id)
+
+    return render(request, 'excluir_comentario_confirm.html', {
+        'comentario': comentario
     })
